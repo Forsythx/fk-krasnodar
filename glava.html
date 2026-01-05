@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Краснодар</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <!-- Подключение внешнего CSS файла -->
+    <link rel="stylesheet" href="styles/glava.css">
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">ФК КРАСНОДАР</div>
+            <nav>
+                <ul>
+                    <li><a href="academy.html">Академия</a></li>
+                    <li><a href="players.html">Игроки</a></li>
+                    <li><a href="awards.html">Награды</a></li>
+                    <li><a href="glava.html">Подать анкету</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <!-- Герой секция -->
+        <section class="hero fade-in">
+            <h1>Хочешь стать футболистом?</h1>
+            <p class="subtitle">Подай заявку в академию лучшего футбольного клуба страны!</p>
+        </section>
+
+        <!-- Форма подачи анкеты -->
+        <section id="application" class="application fade-in">
+            <h2>Подать анкету</h2>
+            <form id="applicationForm">
+                <div class="form-group">
+                    <label for="fullName">ФИО *</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="Введите ваше полное имя">
+                </div>
+                
+                <div class="form-group">
+                    <label for="birthDate">Дата рождения *</label>
+                    <input type="date" id="birthDate" name="birthDate" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="position">Позиция на поле *</label>
+                    <select id="position" name="position" required>
+                        <option value="">Выберите позицию</option>
+                        <div class="vibor">
+                        <option value="goalkeeper">Вратарь</option>
+                        <option value="defender">Защитник</option>
+                        <option value="midfielder">Полузащитник</option>
+                        <option value="forward">Нападающий</option>
+                        </div>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="experience">Опыт игры</label>
+                    <textarea id="experience" name="experience" rows="4" placeholder="Расскажите о вашем футбольном опыте..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Телефон *</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 123-45-67">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required placeholder="example@mail.ru">
+                </div>
+                
+                <button type="submit" class="submit-btn">Отправить анкету</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <p class="privacy-text">
+                Продолжая использовать наш сайт, вы даёте компании согласие на обработку файлов cookie 
+                и других пользовательских данных, в соответствии с политикой конфиденциальности.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Плавная прокрутка
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+
+                // якорь  плавная прокрутка
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Обработка формы
+        document.getElementById('applicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            if(!data.fullName || !data.phone || !data.email) {
+                alert('Пожалуйста, заполните обязательные поля!');
+                return;
+            }
+
+            alert('Спасибо! Ваша анкета отправлена. Мы свяжемся с вами в ближайшее время.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

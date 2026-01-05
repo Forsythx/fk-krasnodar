@@ -1,0 +1,205 @@
+/* awards.css */
+
+/* СБРОС */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* ОСНОВА */
+body {
+    background: 
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
+    url('../images/fons/fon2.jpg') 
+    no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ШАПКА */
+header {
+    background: rgba(55, 160, 23, .63);
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo::before {
+    content: "";
+    display: inline-block;
+    width: 55px;
+    height: 50px;
+    background-image: url('../images/favicon.ico');
+    background-size: contain;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: .3s;
+}
+
+nav a:hover {
+    background: white;
+    color: black;
+}
+
+/* HERO */
+.hero {
+    padding: 190px 0 80px;
+    text-align: center;
+}
+
+.hero h1 {
+    color: #ffffffb0;
+    font-family: Supermolot, sans-serif;
+    text-transform: uppercase;
+    font-weight: 900;
+    text-align: center;
+    font-size: 48px;
+}
+
+.hero p {
+    color: #ffffffb0;
+    font-family: Supermolot, sans-serif;
+    text-transform: uppercase;
+    font-weight: 900;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* СТАТИСТИКА */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    margin-bottom: 80px;
+}
+
+.stat {
+    background: rgba(82, 82, 82, 0.219);
+    padding: 40px 20px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.stat h3 {
+    font-size: 42px;
+    color: #00ff6a;
+}
+
+.stat p {
+    margin-top: 10px;
+    color: #ccc;
+}
+
+/* ТРОФЕИ */
+.trophies {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-bottom: 80px;
+}
+
+.trophy {
+    background: rgba(62, 163, 32, .48);
+    border-radius: 25px;
+    overflow: hidden;
+    transition: .4s;
+}
+
+.trophy:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .5);
+}
+
+.trophy img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.trophy-content {
+    padding: 25px;
+}
+
+.trophy-content h2 {
+    margin-bottom: 10px;
+}
+
+.trophy-content p {
+    color: #ddd;
+    line-height: 1.5;
+}
+
+/* ВРЕМЕННАЯ ЛИНИЯ */
+.timeline {
+    border-left: 4px solid #00ff6a;
+    padding-left: 40px;
+    margin-bottom: 80px;
+}
+
+.event {
+    margin-bottom: 40px;
+}
+
+.event h3 {
+    color: #00ff6a;
+    margin-bottom: 5px;
+}
+
+.event p {
+    color: #ccc;
+}
+
+/* ФУТЕР */
+footer {
+    background: rgba(0, 0, 0, .9);
+    padding: 30px 0;
+    text-align: center;
+    color: #aaa;
+}
+
+/* АДАПТИВ */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 36px;
+    }
+}
