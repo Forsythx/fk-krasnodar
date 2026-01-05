@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Академия ФК Краснодар</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="styles/mini-game.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">ФК КРАСНОДАР</div>
+            <nav>
+                <ul>
+                    <li><a href="academy.html">Академия</a></li>
+                    <li><a href="players.html">Игроки</a></li>
+                    <li><a href="awards.html">Награды</a></li>
+                    <li><a href="glava.html">Подать анкету</a></li>
+                    <li><a href="mini-game.html">Мини-игра</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Страница мини-игры -->
+    <div class="container game-container">
+        <h1 class="game-title">⚽ Тренировка реакции ⚽</h1>
+        <p class="game-instruction">Кликай по мячу как можно быстрее! У тебя 30 секунд, чтобы набрать максимум очков.</p>
+        
+        <div class="game-stats">
+            <div class="stat">
+                <span id="score">0</span>
+                Кликов
+            </div>
+            <div class="stat">
+                <span id="time">30</span>
+                Секунд
+            </div>
+            <div class="stat">
+                <span id="best">0</span>
+                Рекорд
+            </div>
+        </div>
+        
+        <div class="game-area">
+            <div id="ball"></div>
+        </div>
+        
+        <div class="game-controls">
+            <button class="game-btn" onclick="startGame()">НАЧАТЬ</button>
+            <button class="game-btn" onclick="resetGame()">ЗАНОВО</button>
+        </div>
+        
+        <p class="game-instruction">Тренируй свою реакцию и скорость! У настоящих футболистов отличная реакция на мяч.</p>
+    </div>
+
+    <footer>
+        © Футбольный клуб «Краснодар»
+    </footer>
+
+    <script>
+        // Игровые переменные
+        let score = 0;
+        let timeLeft = 30;
+        let gameActive = false;
+        let timer;
+        let bestScore = localStorage.getItem('bestScore') || 0;
+        
+        const ball = document.getElementById('ball');
+        const scoreElement = document.getElementById('score');
+        const timeElement = document.getElementById('time');
+        const bestElement = document.getElementById('best');
+        
+        //  лучший результат
+        bestElement.textContent = bestScore;
+        
+        // Клик по мячу
+        ball.onclick = function() {
+            if (!gameActive) return;
+            
+            score++;
+            scoreElement.textContent = score;
+            
+            // Перемещаем мяч в случайное место
+            const gameArea = document.querySelector('.game-area');
+            const maxX = gameArea.clientWidth - ball.clientWidth;
+            const maxY = gameArea.clientHeight - ball.clientHeight;
+            
+            const newX = Math.floor(Math.random() * maxX);
+            const newY = Math.floor(Math.random() * maxY);
+            
+            ball.style.left = newX + 'px';
+            ball.style.top = newY + 'px';
+            
+            // Анимация клика
+            ball.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                ball.style.transform = 'scale(1)';
+            }, 200);
+        };
+        
+        // Таймер
+        function updateTimer() {
+            timeLeft--;
+            timeElement.textContent = timeLeft;
+            
+            if (timeLeft <= 0) {
+                endGame();
+            }
+        }
+        
+        // Начать игру
+        function startGame() {
+            if (gameActive) return;
+            
+            score = 0;
+            timeLeft = 30;
+            gameActive = true;
+            
+            scoreElement.textContent = score;
+            timeElement.textContent = timeLeft;
+            timeElement.style.color = '#00ff6a';
+            
+            // Запускаем таймер
+            clearInterval(timer);
+            timer = setInterval(updateTimer, 1000);
+            
+            // Рандомное место мяча
+            const gameArea = document.querySelector('.game-area');
+            const maxX = gameArea.clientWidth - ball.clientWidth;
+            const maxY = gameArea.clientHeight - ball.clientHeight;
+            
+            const newX = Math.floor(Math.random() * maxX);
+            const newY = Math.floor(Math.random() * maxY);
+            
+            ball.style.left = newX + 'px';
+            ball.style.top = newY + 'px';
+        }
+        
+        // Завершить игру
+        function endGame() {
+            gameActive = false;
+            clearInterval(timer);
+            
+            // Обновляем лучший результат
+            if (score > bestScore) {
+                bestScore = score;
+                localStorage.setItem('bestScore', bestScore);
+                bestElement.textContent = bestScore;
+            }
+            
+            // Показываем результат
+            timeElement.style.color = '#ff4757';
+            timeElement.textContent = '0';
+            
+            alert(`Тренировка завершена!\n\nТвой результат: ${score} кликов\nЛучший результат: ${bestScore} кликов\n\nПродолжай тренироваться!`);
+        }
+        
+        // Сбросить игру
+        function resetGame() {
+            gameActive = false;
+            clearInterval(timer);
+            
+            score = 0;
+            timeLeft = 30;
+            
+            scoreElement.textContent = score;
+            timeElement.textContent = timeLeft;
+            timeElement.style.color = '#00ff6a';
+            
+            // Возвращаем мяч в центр
+            ball.style.left = '270px';
+            ball.style.top = '170px';
+            ball.style.transform = 'scale(1)';
+        }
+        
+        // Автостарт при загрузке
+        window.onload = function() {
+            // Размещаем мяч в центре
+            ball.style.left = '270px';
+            ball.style.top = '170px';
+        };
+    </script>
+
+</body>
+</html>

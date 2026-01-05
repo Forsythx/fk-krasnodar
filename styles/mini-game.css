@@ -1,0 +1,217 @@
+/* MINI */
+
+/*  СБРОС  */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/*  ОСНОВА  */
+body {
+    background:
+        linear-gradient(rgba(0, 0, 0, .75), rgba(0, 0, 0, .9)),
+        url('../images/fons/fon4.jpg')
+        no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/*  ШАПКА  */
+header {
+    background: rgba(55, 160, 23, 0.63);
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo::before {
+    content: "";
+    display: inline-block;
+    width: 55px;
+    height: 50px;
+    background-image: url('../images/favicon.ico');
+    background-size: contain;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: all 0.3s;
+    padding: 8px 16px;
+    border-radius: 5px;
+}
+
+nav a:hover {
+    background: white;
+    color: #000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ===== ФУТЕР ===== */
+footer {
+    background: rgba(0, 0, 0, .95);
+    padding: 40px 0;
+    text-align: center;
+    color: #aaa;
+    border-top: 2px solid #00ff6a;
+}
+
+/* ===== СТИЛИ ДЛЯ СТРАНИЦЫ ИГРЫ ===== */
+.game-container {
+    padding: 120px 0 80px;
+    text-align: center;
+}
+
+.game-area {
+    width: 600px;
+    height: 400px;
+    background: #0d3b2a;
+    margin: 30px auto;
+    position: relative;
+    border: 3px solid #00ff6a;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+#ball {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle at 30% 30%, white, #ffd700);
+    border-radius: 50%;
+    position: absolute;
+    top: 170px;
+    left: 270px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+#ball:hover {
+    transform: scale(1.1);
+}
+
+.game-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 20px 0;
+    font-family: Supermolot, sans-serif;
+}
+
+.stat {
+    background: rgba(0, 255, 106, .2);
+    padding: 15px 30px;
+    border-radius: 10px;
+    border: 2px solid #00ff6a;
+}
+
+.stat span {
+    color: #00ff6a;
+    font-size: 28px;
+    font-weight: bold;
+    display: block;
+}
+
+.game-controls {
+    margin: 30px 0;
+}
+
+.game-btn {
+    background: #00ff6a;
+    color: #000;
+    border: none;
+    padding: 12px 35px;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s;
+    font-family: Supermolot, sans-serif;
+}
+
+.game-btn:hover {
+    background: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 255, 106, 0.5);
+}
+
+.game-title {
+    color: #00ff6a;
+    font-family: Supermolot, sans-serif;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.game-instruction {
+    color: #ccc;
+    font-size: 18px;
+    margin: 20px auto;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 38px;
+    }
+    
+    nav ul {
+        gap: 15px;
+    }
+    
+    .game-area {
+        width: 90%;
+        height: 300px;
+    }
+    
+    #ball {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .game-stats {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+}
