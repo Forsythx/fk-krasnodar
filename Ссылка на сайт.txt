@@ -1,0 +1,1 @@
+https://forsythx.github.io/fk-krasnodar/academy.html
